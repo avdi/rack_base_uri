@@ -1,0 +1,7 @@
+
+For more information on rack_base_uri, see http://rack_base_uri.rubyforge.org
+
+NOTE: Change this information in PostInstall.txt 
+You can also delete it if you don't want it.
+
+
