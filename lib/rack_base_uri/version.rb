@@ -1,4 +1,4 @@
-module RackBaseUri #:nodoc:
+class Rack::BaseUri #:nodoc:
   module VERSION #:nodoc:
     MAJOR = 0
     MINOR = 0

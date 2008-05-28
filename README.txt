@@ -1,26 +1,43 @@
 = rack_base_uri
 
-* FIX (url)
+* http://avdi.org/
 
 == DESCRIPTION:
 
-FIX (describe your package)
+A middleware to automatically set the base URI for [X]HTML documents. This is
+useful when you want to mount a web application on a subdirectory,
+e.g. http://example.org/myapp/
+
+The effect is accomplished by munging [X]HTML responses with HPricot.  So in the
+above example, HTML documents will have a "<base
+href='http://example.org/myapp/'>" element added to their HEAD, and XHTML
+documents will have the xml:base attribute of the root element set to
+'http://example.org/myapp/'.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* It might work
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+In your rackup file:
+
+ require 'rack_base_uri'  
+
+ use Rack::CommonLogger
+ map "/lobster" do
+   use Rack::BaseUri
+   run Rack::Lobster.new
+ end
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* Rack
+* Hpricot
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+TBD
 
 == LICENSE:
 

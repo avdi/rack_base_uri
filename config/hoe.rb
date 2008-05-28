@@ -2,7 +2,7 @@ require 'rack_base_uri/version'
 
 AUTHOR = 'Avdi Grimm'  # can also be an array of Authors
 EMAIL = "avdi@avdi.org"
-DESCRIPTION = "description of gem"
+DESCRIPTION = "A Rack middleware for setting the base URI of pages"
 GEM_NAME = 'rack_base_uri' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'rack_base_uri' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
@@ -34,7 +34,7 @@ end
 REV = nil
 # UNCOMMENT IF REQUIRED:
 # REV = YAML.load(`svn info`)['Revision']
-VERS = RackBaseUri::VERSION::STRING + (REV ? ".#{REV}" : "")
+VERS = Rack::BaseUri::VERSION::STRING + (REV ? ".#{REV}" : "")
 RDOC_OPTS = ['--quiet', '--title', 'rack_base_uri documentation',
     "--opname", "index.html",
     "--line-numbers",
