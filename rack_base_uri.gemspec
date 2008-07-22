@@ -1,9 +1,6 @@
-require File.join(File.dirname(__FILE__), 'lib', 'rack_base_uri')
-require File.join(File.dirname(__FILE__), 'lib', 'rack_base_uri', 'version')
-
 Gem::Specification.new do |spec|
   spec.name                     = 'rack_base_uri'
-  spec.version                  = Rack::BaseUri::VERSION::STRING
+  spec.version                  = "0.0.2"
   spec.author                   = 'Avdi Grimm'
   spec.email                    = 'avdi@avdi.org'
   spec.homepage                 = "http://github.com/avdi/rack_base_uri/"
