@@ -18,7 +18,7 @@ EOF
   spec.required_ruby_version    = '>= 1.8.0'
 
   spec.add_dependency('rack', "0.3.0")
-  spec.add_dependency('hrpicot', "0.6")
+  spec.add_dependency('hpricot', "0.6")
 
   spec.files                    = [
     # Misc
