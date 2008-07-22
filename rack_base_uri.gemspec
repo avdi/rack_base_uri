@@ -1,0 +1,38 @@
+require File.join(File.dirname(__FILE__), 'lib', 'rack_base_uri')
+require File.join(File.dirname(__FILE__), 'lib', 'rack_base_uri', 'version')
+
+Gem::Specification.new do |spec|
+  spec.name                     = 'rack_base_uri'
+  spec.version                  = Rack::BaseUri::VERSION::STRING
+  spec.author                   = 'Avdi Grimm'
+  spec.email                    = 'avdi@avdi.org'
+  spec.homepage                 = "http://github.com/avdi/rack_base_uri/"
+  spec.summary  =
+    'A Rack plugin for automatically setting document base URIs in [X]HTML'
+  spec.description = <<-EOF
+A middleware to automatically set the base URI for [X]HTML documents. This is
+useful when you want to mount a web application on a subdirectory,
+e.g. http://example.org/myapp/
+EOF
+
+  spec.has_rdoc                 = true
+
+  spec.platform                 = Gem::Platform::RUBY
+  spec.required_ruby_version    = '>= 1.8.0'
+
+  spec.add_dependency('rack', "0.3.0")
+  spec.add_dependency('hrpicot', "0.6")
+
+  spec.files                    = [
+    # Misc
+    'README',
+
+    # Libraries
+    'lib/rack_base_uri.rb',
+    'lib/rack_base_uri/version.rb',
+
+    # Specifications
+    'spec/spec_helper.rb',
+    'spec/rack_base_uri_spec.rb',
+  ]
+end
