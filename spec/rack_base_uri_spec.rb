@@ -23,12 +23,13 @@ describe Rack::BaseUri do
     @app     = stub("app", :call => @result)
     @it      = Rack::BaseUri.new(@app)
     @base    = 'http://example.org/subdir'
+    @host    = 'http://example.org'
   end
 
   def do_request
     @map      = Rack::URLMap.new({@base => @it})
     @request  = Rack::MockRequest.new(@map)
-    @response = @request.get("/subdir/foo", 'HTTP_HOST' => 'http://example.org')
+    @response = @request.get("/subdir/foo", 'HTTP_HOST' => @host)
     @doc      = Hpricot(@response.body)
   end
 
@@ -39,6 +40,19 @@ describe Rack::BaseUri do
       tag = @doc.at("head base")
       tag.should_not be_nil
       tag['href'].should == "http://example.org/subdir"
+    end
+
+    describe "with a HTTP_HOST of example.org" do
+      before :each do
+        @host = "example.org"
+      end
+
+      it "should ensure base uri starts with URL scheme" do
+        do_request
+        @response.should be_ok
+        tag = @doc.at("head base")
+        tag['href'].should == "http://example.org/subdir"
+      end
     end
   end
   describe "with application/xhtml+xml content type" do

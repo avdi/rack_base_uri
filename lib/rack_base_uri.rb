@@ -13,9 +13,12 @@ module Rack
 
     def call(env)
       host    = env.fetch('HTTP_HOST') {
-        env['rack.url_scheme'] + '://' + env['SERVER_NAME']  + ':' + env['SERVER_PORT']
+        env['SERVER_NAME']  + ':' + env['SERVER_PORT']
       }
       base    = host + env['SCRIPT_NAME']
+      unless base =~ %r[://]
+        base = (env['rack.url_scheme'] + '://' + base)
+      end
       result  = @app.call(env)
       headers = result[1]
       doc     = Hpricot(result[2].to_s)
