@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.email                    = 'avdi@avdi.org'
   spec.homepage                 = "http://github.com/avdi/rack_base_uri/"
   spec.summary  =
-    'A Rack plugin for automatically setting document base URIs in [X]HTML'
+    'A Rack middleware for automatically setting [X]HTML document base URIs.'
   spec.description = <<-EOF
 A middleware to automatically set the base URI for [X]HTML documents. This is
 useful when you want to mount a web application on a subdirectory,
