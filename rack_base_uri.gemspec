@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name                     = 'rack_base_uri'
-  spec.version                  = "0.0.3"
+  spec.version                  = "0.0.4"
   spec.author                   = 'Avdi Grimm'
   spec.email                    = 'avdi@avdi.org'
   spec.homepage                 = "http://github.com/avdi/rack_base_uri/"
