@@ -16,9 +16,14 @@ module Rack
         env['SERVER_NAME']  + ':' + env['SERVER_PORT']
       }
       base    = host + env['SCRIPT_NAME']
+
+      # Make sure it begins with e.g. 'http://'
       unless base =~ %r[://]
         base = (env['rack.url_scheme'] + '://' + base)
       end
+
+      base.sub!(%r[/*$], '/')   # Make sure it ends with a '/'
+
       result  = @app.call(env)
       headers = result[1]
       doc     = Hpricot(result[2].to_s)

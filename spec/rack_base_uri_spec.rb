@@ -39,7 +39,7 @@ describe Rack::BaseUri do
       @response.should be_ok
       tag = @doc.at("head base")
       tag.should_not be_nil
-      tag['href'].should == "http://example.org/subdir"
+      tag['href'].should == "http://example.org/subdir/"
     end
 
     describe "with a HTTP_HOST of example.org" do
@@ -51,9 +51,10 @@ describe Rack::BaseUri do
         do_request
         @response.should be_ok
         tag = @doc.at("head base")
-        tag['href'].should == "http://example.org/subdir"
+        tag['href'].should == "http://example.org/subdir/"
       end
     end
+
   end
   describe "with application/xhtml+xml content type" do
     before :each do
@@ -65,7 +66,7 @@ describe Rack::BaseUri do
       @response.should be_ok
       html = @doc.at("html")
       html.should_not be_nil
-      html['xml:base'].should == "http://example.org/subdir"
+      html['xml:base'].should == "http://example.org/subdir/"
     end
   end
 
@@ -79,7 +80,7 @@ describe Rack::BaseUri do
       @response.should be_ok
       html = @doc.at("html")
       html.should_not be_nil
-      html['xml:base'].should == "http://example.org/subdir"
+      html['xml:base'].should == "http://example.org/subdir/"
     end
   end
 
