@@ -26,7 +26,16 @@ module Rack
 
       result  = @app.call(env)
       headers = result[1]
-      doc     = Hpricot(result[2].to_s)
+
+      # We have to get the content this way because the Rack spec only
+      # guarantees the presence of an #each method that yields Strings.  We
+      # can't expect #inject or #to_s or anything.
+      content = ""
+      result[2].each do |chunk|
+        content << chunk
+      end
+
+      doc     = Hpricot(content)
       case headers['Content-Type']
       when 'text/html'
         (doc/'head').append("<base href='#{base}'>")

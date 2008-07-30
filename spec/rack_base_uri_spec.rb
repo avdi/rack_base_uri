@@ -5,6 +5,21 @@ require 'rack/urlmap'
 require 'hpricot'
 
 describe Rack::BaseUri do
+
+  # This class is used to keep us honest... we can only depend on the content
+  # responding to each, not necessarily that it is Array-like.
+  class ContentStream
+    def initialize(content)
+      @content = content
+    end
+
+    def each
+      @content.each do |chunk|
+        yield chunk
+      end
+    end
+  end
+  
   before :each do
     @headers = {'Content-Type' => 'text/html'}
     @body    = <<-HTML
@@ -18,7 +33,7 @@ describe Rack::BaseUri do
     @result  = [
       200,
       @headers,
-      [@body]
+      ContentStream.new(@body)
     ]
     @app     = stub("app", :call => @result)
     @it      = Rack::BaseUri.new(@app)
@@ -29,7 +44,7 @@ describe Rack::BaseUri do
   def do_request
     @map      = Rack::URLMap.new({@base => @it})
     @request  = Rack::MockRequest.new(@map)
-    @response = @request.get("/subdir/foo", 'HTTP_HOST' => @host)
+    @response = @request.get("/subdir/foo", 'HTTP_HOST' => @host, :lint => true)
     @doc      = Hpricot(@response.body)
   end
 
